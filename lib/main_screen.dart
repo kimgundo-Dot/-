@@ -187,7 +187,7 @@ class MainScreen extends StatelessWidget {
                         children: [
                           const Text('기념일 기록', style: TextStyle(fontWeight: FontWeight.bold)),
                           const SizedBox(height: 4),
-                          const Text('특정 기념일에\n전달하고 싶은 말을\n전달해요', textAlign: TextAlign.center),
+                          const Text('특정 기념일\n전달하고 싶은 말을\n전달해요', textAlign: TextAlign.center),
                           const SizedBox(height: 12),
                           ElevatedButton(
                             onPressed: () {},
