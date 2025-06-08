@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_test/my_page_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -20,7 +21,16 @@ class MainScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Image.asset('assets/icon.png', height: 32),
-                  const Icon(Icons.person_outline, size: 28),
+                  IconButton(
+                    icon: const Icon(Icons.person_outline, size: 28),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const MyPageScreen()),
+                      );
+                    },
+                  ),
+
                 ],
               ),
 
