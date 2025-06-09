@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:new_test/my_page_screen.dart';
+import 'package:new_test/anniversary_screen.dart';
+import 'package:new_test/memory_album_screen.dart';
+
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -30,7 +33,6 @@ class MainScreen extends StatelessWidget {
                       );
                     },
                   ),
-
                 ],
               ),
 
@@ -85,7 +87,6 @@ class MainScreen extends StatelessWidget {
                     const SizedBox(height: 20),
 
                     // 오늘의 질문 카드
-// 오늘의 질문 카드 (디자인 일치 버전)
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
@@ -139,7 +140,6 @@ class MainScreen extends StatelessWidget {
                       ),
                     ),
 
-
                     const SizedBox(height: 16),
 
                     // 작성하기 버튼
@@ -165,45 +165,63 @@ class MainScreen extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFE2F2E6),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Column(
-                        children: [
-                          const Text('추억 앨범', style: TextStyle(fontWeight: FontWeight.bold)),
-                          const SizedBox(height: 4),
-                          const Text('아이와의 소중한\n추억을 남겨주세요', textAlign: TextAlign.center),
-                          const SizedBox(height: 12),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: const Text('작성하기'),
-                          ),
-                        ],
+                    child: SizedBox(
+                      height: 200,
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFE2F2E6),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Column(
+                          children: [
+                            const Text('추억 앨범', style: TextStyle(fontWeight: FontWeight.bold)),
+                            const SizedBox(height: 4),
+                            const Expanded(
+                              child: Text('아이와의 소중한\n추억을 남겨주세요', textAlign: TextAlign.center),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const MemoryAlbumScreen()),
+                                );
+                              },
+                              child: const Text('작성하기'),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFE7E5FA),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Column(
-                        children: [
-                          const Text('기념일 기록', style: TextStyle(fontWeight: FontWeight.bold)),
-                          const SizedBox(height: 4),
-                          const Text('특정 기념일에\n전달하고 싶은 말을\n전달해요', textAlign: TextAlign.center),
-                          const SizedBox(height: 12),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: const Text('작성하기'),
-                          ),
-                        ],
+                    child: SizedBox(
+                      height: 200,
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFE7E5FA),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Column(
+                          children: [
+                            const Text('기념일 기록', style: TextStyle(fontWeight: FontWeight.bold)),
+                            const SizedBox(height: 4),
+                            const Expanded(
+                              child: Text('특정 기념일에\n전달하고 싶은 말을\n전달해요', textAlign: TextAlign.center),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const AnniversaryScreen()),
+                                );
+                              },
+                              child: const Text('작성하기'),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

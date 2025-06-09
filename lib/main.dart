@@ -26,7 +26,7 @@ class NeverlandApp extends StatelessWidget {
         Locale('en'), // 영어도 같이 넣자
       ],
 
-      home: const ChildInfoScreen(), // 혹은 LoginScreen()
+      home: const LoginScreen(),// <- 여기로 변경!
     );
   }
 }
@@ -80,19 +80,26 @@ class LoginScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 48,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ChildInfoScreen()),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFFEE500),
                     foregroundColor: Colors.black,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
                   child: const Text(
                     '카카오 로그인',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                ),
+                )
               ),
+
 
               const SizedBox(height: 12),
 

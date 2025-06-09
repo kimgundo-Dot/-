@@ -3,6 +3,19 @@ import 'package:flutter/material.dart';
 class MyPageScreen extends StatelessWidget {
   const MyPageScreen({super.key});
 
+  Widget _buildMenuItem(String title) {
+    return Column(
+      children: [
+        ListTile(
+          title: Text(title, style: TextStyle(fontSize: 16)),
+          contentPadding: EdgeInsets.zero,
+          onTap: () {}, // 필요 시 콜백
+        ),
+        Divider(thickness: 1, color: Colors.black12),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,22 +102,14 @@ class MyPageScreen extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 32),
-            const Text('오늘의 질문 관리', style: TextStyle(fontSize: 16)),
+            _buildMenuItem('오늘의 질문 관리'),
+            _buildMenuItem('추억의 앨범 관리'),
+            _buildMenuItem('기념일 관리'),
             const SizedBox(height: 16),
-            const Text('추억의 앨범 관리', style: TextStyle(fontSize: 16)),
-            const SizedBox(height: 16),
-            const Text('기념일 관리', style: TextStyle(fontSize: 16)),
-            const SizedBox(height: 32),
-            const Divider(thickness: 1, color: Colors.black12),
-            const SizedBox(height: 16),
-            const Text('공지사항', style: TextStyle(fontSize: 16)),
-            const SizedBox(height: 16),
-            const Text('약관 및 정책', style: TextStyle(fontSize: 16)),
-            const SizedBox(height: 16),
-            const Text('문의하기', style: TextStyle(fontSize: 16)),
-            const SizedBox(height: 16),
-            const Text('로그아웃', style: TextStyle(fontSize: 16)),
+            _buildMenuItem('공지사항'),
+            _buildMenuItem('약관 및 정책'),
+            _buildMenuItem('문의하기'),
+            _buildMenuItem('로그아웃'),
           ],
         ),
       ),
