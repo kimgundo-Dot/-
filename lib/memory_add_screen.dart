@@ -39,7 +39,7 @@ class _MemoryAddScreenState extends State<MemoryAddScreen> {
         "${widget.selectedDate.year}.${widget.selectedDate.month.toString().padLeft(2, '0')}.${widget.selectedDate.day.toString().padLeft(2, '0')} (${_weekdayToKor(widget.selectedDate.weekday)})";
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF8E7), // 부드러운 연노랑
+      backgroundColor: const Color(0xFFFFF8E7),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -73,77 +73,60 @@ class _MemoryAddScreenState extends State<MemoryAddScreen> {
               const SizedBox(height: 24),
 
               // 사진 추가 박스
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: _pickImages,
-                      child: Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(vertical: 24),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFF3F3F3),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: const [
-                            Icon(Icons.camera_alt_outlined,
-                                size: 30, color: Colors.grey),
-                            SizedBox(height: 8),
-                            Text(
-                              "사진을 최대 3장 선택해주세요",
-                              style:
-                              TextStyle(fontSize: 13, color: Colors.grey),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-
-                    // 선택된 이미지들
-                    if (_images.isNotEmpty)
-                      Wrap(
-                        spacing: 10,
-                        runSpacing: 10,
-                        children: List.generate(_images.length, (i) {
-                          return Stack(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.file(
-                                  File(_images[i].path),
-                                  width: 80,
-                                  height: 80,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              Positioned(
-                                top: 0,
-                                right: 0,
-                                child: GestureDetector(
-                                  onTap: () => _removeImage(i),
-                                  child: const CircleAvatar(
-                                    radius: 12,
-                                    backgroundColor: Colors.black54,
-                                    child: Icon(Icons.close,
-                                        size: 14, color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          );
-                        }),
-                      ),
-                  ],
+              GestureDetector(
+                onTap: _pickImages,
+                child: Container(
+                  width: double.infinity,
+                  height: 400,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF3F3F3),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(Icons.camera_alt_outlined, size: 48, color: Colors.grey),
+                      SizedBox(height: 12),
+                      Text("사진을 최대 3장 선택해주세요", style: TextStyle(fontSize: 14, color: Colors.grey)),
+                    ],
+                  ),
                 ),
               ),
+              const SizedBox(height: 12),
+
+              // 선택한 이미지 썸네일
+              if (_images.isNotEmpty)
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: List.generate(_images.length, (i) {
+                    return Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.file(
+                            File(_images[i].path),
+                            width: 80,
+                            height: 80,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: GestureDetector(
+                            onTap: () => _removeImage(i),
+                            child: const CircleAvatar(
+                              radius: 12,
+                              backgroundColor: Colors.black54,
+                              child: Icon(Icons.close, size: 14, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  }),
+                ),
 
               const SizedBox(height: 24),
 
@@ -171,7 +154,7 @@ class _MemoryAddScreenState extends State<MemoryAddScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.pop(context); // 저장 로직은 나중에 붙이면 됨
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFFFB800),
