@@ -143,7 +143,7 @@ class _ChildInfoScreenState extends State<ChildInfoScreen> {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const MainScreen()),
+                      MaterialPageRoute(builder: (context) => MainScreen()), // const 붙여도 OK면 붙이고
                     );
                   },
                   style: ElevatedButton.styleFrom(

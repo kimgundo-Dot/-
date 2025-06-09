@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'memory_add_screen.dart';
 
 class MemoryAlbumScreen extends StatefulWidget {
   const MemoryAlbumScreen({super.key});
@@ -25,49 +26,64 @@ class _MemoryAlbumScreenState extends State<MemoryAlbumScreen> {
         title: const Text('추억 앨범', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 40),
-              const Text(
-                '아이와 함께한 사진과 그때 상황을 함께 담아주세요',
-                style: TextStyle(fontSize: 14, color: Colors.black54),
-              ),
-              const SizedBox(height: 24),
-              _buildCalendar(),
-              const SizedBox(height: 32),
-              Center(
-                child: Text(
-                  '${selectedDate.year}.${_pad(selectedDate.month)}.${_pad(selectedDate.day)} (${_getWeekdayKor(selectedDate.weekday)})',
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Center(
-                child: Column(
-                  children: [
-                    const Icon(Icons.image, size: 48, color: Colors.grey),
-                    const SizedBox(height: 8),
-                    TextButton(
-                      onPressed: () {
-                        // 이 날의 추억 기록하기 동작
-                      },
-                      child: const Text('이 날의 추억 기록하기'),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 40),
-            ],
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24),
+            child: Text(
+              '아이와 함께한 사진과 그때 상황을 함께 담아주세요',
+              style: TextStyle(fontSize: 14, color: Colors.black54),
+            ),
           ),
-        ),
-      ),
-    ); // <- ✅ Scaffold 닫는 괄호!!
-  }
+          const SizedBox(height: 16),
 
+          // 캘린더
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: _buildCalendar(),
+          ),
+
+          const SizedBox(height: 24),
+
+          // 선택된 날짜
+          Center(
+            child: Text(
+              '${selectedDate.year}.${_pad(selectedDate.month)}.${_pad(selectedDate.day)} (${_getWeekdayKor(selectedDate.weekday)})',
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+          ),
+
+          const SizedBox(height: 16),
+
+          // 추억 기록하기 버튼
+          Center(
+            child: Column(
+              children: [
+                const Icon(Icons.image, size: 48, color: Colors.grey),
+                const SizedBox(height: 8),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => MemoryAddScreen(selectedDate: selectedDate),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    "이 날의 추억 기록하기",
+                    style: TextStyle(color: Colors.purple),
+                  ),
+                )
+
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   Widget _buildCalendar() {
     int daysInMonth = DateTime(focusedMonth.year, focusedMonth.month + 1, 0).day;
