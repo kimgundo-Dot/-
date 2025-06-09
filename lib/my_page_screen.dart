@@ -1,4 +1,3 @@
-// lib/my_page_screen.dart
 import 'package:flutter/material.dart';
 
 class MyPageScreen extends StatelessWidget {
@@ -7,56 +6,105 @@ class MyPageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFFFF6F9), // 연핑크 배경
       appBar: AppBar(
-        title: const Text('마이페이지'),
         backgroundColor: Colors.white,
         elevation: 0,
-        foregroundColor: Colors.black,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text(
+          '마이페이지',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: const [
+        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // 상단 프로필 카드
             Container(
+              width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: const Color(0xFFFFF8E1),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CircleAvatar(radius: 30, backgroundColor: Colors.grey),
-                  const SizedBox(height: 10),
-                  const Text('이석현님\n(진행률 : 45%)'),
-                  const SizedBox(height: 10),
-                  LinearProgressIndicator(
-                    value: 0.45,
-                    color: Colors.orange,
-                    backgroundColor: Colors.orange[100],
+                  Row(
+                    children: const [
+                      CircleAvatar(
+                        radius: 30,
+                        backgroundColor: Colors.grey,
+                      ),
+                      SizedBox(width: 16),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('이석현님', style: TextStyle(fontWeight: FontWeight.bold)),
+                          SizedBox(height: 4),
+                          Text('(진행률 : 45%)'),
+                        ],
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 12),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(4),
+                    child: LinearProgressIndicator(
+                      value: 0.45,
+                      minHeight: 8,
+                      backgroundColor: Color(0xFFFFEBC7),
+                      color: Color(0xFFF8A928),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
                   const Text('챗봇 완성까지 45% 진행했어요'),
-                  const SizedBox(height: 10),
-                  OutlinedButton(
-                    onPressed: () {},
-                    child: const Text("프로필 보기"),
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    width: 140,
+                    height: 36,
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: Colors.black,
+                        side: const BorderSide(color: Colors.black),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                      ),
+                      child: const Text('프로필 보기'),
+                    ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 30),
-            const Text('오늘의 질문 관리'),
-            const SizedBox(height: 10),
-            const Text('추억의 앨범 관리'),
-            const SizedBox(height: 10),
-            const Text('기념일 관리'),
-            const Divider(height: 40),
-            const Text('공지사항'),
-            const Text('약관 및 정책'),
-            const Text('문의하기'),
-            const Text('로그아웃'),
+
+            const SizedBox(height: 32),
+            const Text('오늘의 질문 관리', style: TextStyle(fontSize: 16)),
+            const SizedBox(height: 16),
+            const Text('추억의 앨범 관리', style: TextStyle(fontSize: 16)),
+            const SizedBox(height: 16),
+            const Text('기념일 관리', style: TextStyle(fontSize: 16)),
+            const SizedBox(height: 32),
+            const Divider(thickness: 1, color: Colors.black12),
+            const SizedBox(height: 16),
+            const Text('공지사항', style: TextStyle(fontSize: 16)),
+            const SizedBox(height: 16),
+            const Text('약관 및 정책', style: TextStyle(fontSize: 16)),
+            const SizedBox(height: 16),
+            const Text('문의하기', style: TextStyle(fontSize: 16)),
+            const SizedBox(height: 16),
+            const Text('로그아웃', style: TextStyle(fontSize: 16)),
           ],
         ),
       ),
