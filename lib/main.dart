@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'child_info_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
 void main() {
+  KakaoSdk.init(nativeAppKey: 'aba7c6d2142aed995104ad355d6336e0');
   runApp(const NeverlandApp());
 }
 
@@ -77,15 +79,35 @@ class LoginScreen extends StatelessWidget {
               const Spacer(),// 🔥 이거 덕분에 아래로 밀림!
 
               // 카카오 로그인 버튼
+              // 카카오 로그인 버튼
               SizedBox(
                 width: double.infinity,
                 height: 48,
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => const ChildInfoScreen()),
-                    );
+                  onPressed: () async {
+                    try {
+                      bool isInstalled = await isKakaoTalkInstalled();
+                      OAuthToken token = isInstalled
+                          ? await UserApi.instance.loginWithKakaoTalk()
+                          : await UserApi.instance.loginWithKakaoAccount();
+
+                      print('✅ 카카오 로그인 성공! accessToken: ${token.accessToken}');
+
+                      // 유저 정보 받아오기 (선택)
+                      final user = await UserApi.instance.me();
+                      print('👤 사용자 이메일: ${user.kakaoAccount?.email}');
+
+                      // 다음 화면으로 이동
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ChildInfoScreen()),
+                      );
+                    } catch (e) {
+                      print('❌ 카카오 로그인 실패: $e');
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('카카오 로그인 실패')),
+                      );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFFEE500),
@@ -106,10 +128,12 @@ class LoginScreen extends StatelessWidget {
               ),
 
 
+
               const SizedBox(height: 12),
 
               // 구글 로그인 버튼
               SizedBox(
+
                 width: double.infinity,
                 height: 48,
                 child: OutlinedButton(

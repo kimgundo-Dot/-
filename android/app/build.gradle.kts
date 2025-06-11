@@ -26,7 +26,8 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
 
-        // ✅ 카카오 앱 키 placeholder는 여기다!
+        // ✅ 수정된 카카오 scheme 등록 (타입 에러 없이 작동하게)
+        manifestPlaceholders.put("kakaoScheme", "kakaoaba7c6d2142aed995104ad355d6336e0")
         manifestPlaceholders.put("kakaoAppKey", "aba7c6d2142aed995104ad355d6336e0")
     }
 
