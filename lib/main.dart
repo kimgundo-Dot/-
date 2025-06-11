@@ -93,33 +93,41 @@ class LoginScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Text(
-                    '카카오 로그인',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/kakao_icon.png', height: 24),
+                      const SizedBox(width: 8),
+                      const Text('카카오 로그인'),
+                    ],
                   ),
-                )
+                ),
               ),
 
 
               const SizedBox(height: 12),
 
               // 구글 로그인 버튼
-              SizedBox(
-                width: double.infinity,
-                height: 48,
-                child: OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    side: const BorderSide(color: Colors.black26),
-                  ),
-                  child: const Text(
-                    '구글로 계속하기',
-                    style: TextStyle(color: Colors.black),
+                SizedBox(
+                  width: double.infinity,
+                  height: 48,
+                  child: OutlinedButton(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      side: const BorderSide(color: Colors.black26),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/google_icon.png', height: 24),
+                        const SizedBox(width: 8),
+                        const Text('구글로 계속하기', style: TextStyle(color: Colors.black)),
+                      ],
+                    ),
                   ),
                 ),
-              ),
+
 
               const SizedBox(height: 12),
 
@@ -132,10 +140,16 @@ class LoginScreen extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
                     foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   ),
-                  child: const Text('Apple로 계속하기'),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/apple_icon.png', height: 24, color: Colors.white),
+                      const SizedBox(width: 8),
+                      const Text('Apple로 계속하기'),
+                    ],
+                  ),
                 ),
               ),
 

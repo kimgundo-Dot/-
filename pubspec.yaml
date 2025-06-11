@@ -60,6 +60,9 @@ flutter:
     - assets/logo_neverland.png
     - assets/character.png
     - assets/icon.png
+    - assets/google_icon.png
+    - assets/apple_icon.png
+    - assets/kakao_icon.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
