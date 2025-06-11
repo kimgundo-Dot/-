@@ -1,27 +1,29 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.new_test">
+
     <application
         android:label="new_test"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
-        <!-- ✅ 카카오 SDK 앱 키 설정 -->
+        <!-- ✅ 카카오 SDK 앱 키 설정 (Meta-data) -->
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="${kakaoAppKey}" />
+            android:value="5abf710938aaca58fb67065ebd73cd79" />
 
-        <!-- ✅ 카카오 로그인 콜백을 처리하는 액티비티 추가 (여기가 핵심!!) -->
-        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+        <!-- ✅ 카카오 로그인 콜백을 처리하는 액티비티 (핵심 포인트) -->
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="kakaoaba7c6d2142aed995104ad355d6336e0" />
-                <!-- ⚠️ 여기: kakao + 네이티브 앱 키! -->
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="kakao5abf710938aaca58fb67065ebd73cd79" />
             </intent-filter>
         </activity>
 
-        <!-- ✅ 기존 Flutter MainActivity -->
+        <!-- ✅ 기본 Flutter MainActivity 설정 -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -31,6 +33,7 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
+
             <meta-data
                 android:name="io.flutter.embedding.android.NormalTheme"
                 android:resource="@style/NormalTheme" />
@@ -40,16 +43,17 @@
             </intent-filter>
         </activity>
 
-        <!-- Flutter 설정 유지 -->
+        <!-- ✅ Flutter 설정 유지 -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
 
+    <!-- ✅ queries (Flutter 관련 권한들 일부 앱에서 필요) -->
     <queries>
         <intent>
-            <action android:name="android.intent.action.PROCESS_TEXT"/>
-            <data android:mimeType="text/plain"/>
+            <action android:name="android.intent.action.PROCESS_TEXT" />
+            <data android:mimeType="text/plain" />
         </intent>
     </queries>
 </manifest>

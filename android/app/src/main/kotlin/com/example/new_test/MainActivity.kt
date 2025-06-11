@@ -22,6 +22,7 @@ class MainActivity : FlutterActivity() {
                     md.update(signature.toByteArray())
                     val keyHash = Base64.encodeToString(md.digest(), Base64.NO_WRAP)
                     Log.d("🔥 KeyHash", keyHash)
+                    println("🔥 KeyHash: $keyHash")
                 }
             }
         } catch (e: Exception) {

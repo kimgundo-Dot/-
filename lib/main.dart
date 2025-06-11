@@ -5,7 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
 void main() {
-  KakaoSdk.init(nativeAppKey: 'aba7c6d2142aed995104ad355d6336e0');
+  KakaoSdk.init(nativeAppKey: '5abf710938aaca58fb67065ebd73cd79');
   runApp(const NeverlandApp());
 }
 

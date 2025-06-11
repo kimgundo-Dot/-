@@ -27,8 +27,8 @@ android {
         versionName = flutter.versionName
 
         // ✅ 수정된 카카오 scheme 등록 (타입 에러 없이 작동하게)
-        manifestPlaceholders.put("kakaoScheme", "kakaoaba7c6d2142aed995104ad355d6336e0")
-        manifestPlaceholders.put("kakaoAppKey", "aba7c6d2142aed995104ad355d6336e0")
+        manifestPlaceholders.put("kakaoScheme", "kakao5abf710938aaca58fb67065ebd73cd79")
+        manifestPlaceholders.put("kakaoAppKey", "5abf710938aaca58fb67065ebd73cd79")
     }
 
     buildTypes {
