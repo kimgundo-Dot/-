@@ -3,6 +3,11 @@
         android:label="new_test"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="${kakaoAppKey}" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

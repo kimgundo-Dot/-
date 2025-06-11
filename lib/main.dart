@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'child_info_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 void main() {
   runApp(const NeverlandApp());
@@ -108,25 +109,45 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 12),
 
               // 구글 로그인 버튼
-                SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                      side: const BorderSide(color: Colors.black26),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset('assets/google_icon.png', height: 24),
-                        const SizedBox(width: 8),
-                        const Text('구글로 계속하기', style: TextStyle(color: Colors.black)),
-                      ],
-                    ),
+              SizedBox(
+                width: double.infinity,
+                height: 48,
+                child: OutlinedButton(
+                  onPressed: () async {
+                    GoogleSignIn googleSignIn = GoogleSignIn();
+                    try {
+                      final account = await googleSignIn.signIn();
+                      if (account != null) {
+                        print('구글 로그인 성공: ${account.displayName}');
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => const ChildInfoScreen()),
+                        );
+                      } else {
+                        print('사용자가 로그인을 취소했어요');
+                      }
+                    } catch (e) {
+                      print('구글 로그인 실패: $e');
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('구글 로그인 실패')),
+                      );
+                    }
+                  },
+                  style: OutlinedButton.styleFrom(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    side: const BorderSide(color: Colors.black26),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/google_icon.png', height: 24),
+                      const SizedBox(width: 8),
+                      const Text('구글로 계속하기', style: TextStyle(color: Colors.black)),
+                    ],
                   ),
                 ),
+              ),
+
 
 
               const SizedBox(height: 12),
